@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" type="text/css" href="css/custom.css" />
+		<!--<script src="scripts/test.js"></script>-->
+		<script src="https://libs.zappar.com/zappar-js/0.3.11/zappar.js"></script>
+	</head>
+
+	<body>
+		<div id="BG" style="text-align: center">
+			<div id="speech" class="balloon balloon-bottom">
+				<div id="play-area">
+					<div class="music-button-area">
+						<img
+							id="music-button"
+							class="anim"
+							src="assets/resources/kanonaki_button.png"
+						/>
+					</div>
+				</div>
+
+				<div id="play-area-lyra">
+					<div class="music-button-area">
+						<img
+							id="music-button-2"
+							class="anim"
+							src="assets/resources/lyra_button.png"
+						/>
+					</div>
+				</div>
+
+				<video
+					class="vertical-center-video"
+					id="video"
+					autoplay
+				></video>
+				<canvas
+					id="myCanvas"
+					class="vertical-center-video2"
+					width="300"
+					height="300"
+				>
+				</canvas>
+				<p id="text" class="vertical-center">
+					Γειά χαρά! Καλωσόρισες στο παιχνίδι του Μουσείου Τσιτσάνη με
+					τη χρήση επαυξημένης πραγματικότητας. Παίζοντας, θα
+					ανακαλύψεις κρυμμένες πληροφορίες και θα μάθεις καινούργια
+					πράγματα.
+				</p>
+			</div>
+			<div id="tsitsanis" class="pulse">
+				<img src="assets/tsitsanis_F.png" />
+			</div>
+			<!--
+			<div id="next"><img src="assets/mona_nxt_btn.png" /></div>
+			-->
+		</div>
+
+		<!--Loads everything for the game-->
+		<script type="text/javascript" src="scripts/tiar.js"></script>
+		<script type="text/javascript" src="scripts/imagetracking.js"></script>
+	</body>
+</html>

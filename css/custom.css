@@ -1,0 +1,178 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.balloon {
+	position: relative;
+	width: 300px;
+	height: 300px;
+	background: #f6b829;
+	color: #0a273a;
+	border-radius: 12px;
+	margin: 30px auto 10px auto;
+}
+
+
+.balloon-bottom {
+	margin-bottom: 40px;
+}
+
+.balloon:before {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+
+.balloon-bottom:before {
+	bottom: -30px;
+	top: calc(100% - 12px);
+	border-top: 12px solid transparent;
+	border-bottom: 30px solid transparent;
+	border-right: 40px solid #f6b829;
+	left: 40%;
+}
+
+.pulse {
+	background-color: #f27e89;
+	border-radius: 50%;
+	width: 220px;
+
+	box-shadow: 0 0 0 0 rgba(242, 126, 137, 1);
+	transform: scale(1);
+	animation: pulse 2s infinite;
+	display: inline-block;
+	cursor: pointer;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(242, 126, 137, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(242, 126, 137, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(242, 126, 137, 0);
+	}
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.vertical-center-video
+{
+    margin: auto;
+    text-align: center;
+    width:300px;
+    position: absolute;
+	display: block;
+}
+
+.vertical-center-video2
+{
+    margin: auto;
+    text-align: center;
+    width:95%;
+    height:95%;
+    position:absolute;
+    right: 7px;
+}
+
+#tsitsanis {
+	text-align: center;
+}
+
+#tsitsanis img {
+	width: 200px;
+}
+
+#speech {
+	text-align: center;
+	font-size: 1.2em;
+	padding: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#BG {
+	background-image: url("../assets/BG_general_white_mona.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+
+}
+
+#next {
+	display: block;
+	margin: auto;
+	width: 80px;
+	height: 100px;
+	cursor: pointer;
+	margin-top: 50px;
+}
+
+#next img {
+	width: 80px;
+	height: 100px;
+}
+
+#text {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+			#play-area {
+				width: 100%;
+			}
+
+			#play-area-lyra{
+				width:100%;
+			}
+
+			.music-button-area {
+				width: 80%;
+				text-align: center;
+				margin: auto;
+			}
+
+			#music-button {
+				width: 250px;
+			}
+			#music-button-2 {
+				width: 180px;
+			}
+
+
+			.anim {
+				transform: scale(1);
+				animation: pulse 2s infinite;
+			}
+
+			@keyframes pulse {
+				0% {
+					transform: scale(0.95);
+				}
+
+				70% {
+					transform: scale(1);
+				}
+
+				100% {
+					transform: scale(0.95);
+				}
+			}

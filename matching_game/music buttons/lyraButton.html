@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;700&display=swap" rel="stylesheet"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style type="text/css">
+#play-area {
+	width: 100%;
+}
+
+.music-button-area {
+	width: 80%;
+	text-align: center;
+	margin: auto;
+}
+
+#music-button {
+	width: 150px;
+}
+
+.anim {
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+	}
+
+	70% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0.95);
+	}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="play-area">
+	
+	<div class="music-button-area">
+		<img id="music-button" class="anim" src="resources/lyra_button.png">
+		
+	</div>
+
+</div>
+
+<script>
+
+let lyra = new Audio('resources/lyra.mp3');
+let musBtn = document.getElementById('music-button');
+
+musBtn.addEventListener("click", audioClick);
+
+function audioClick() {
+	lyra.pause();
+	lyra.currentTime = 0;
+	lyra.play();
+}
+
+
+
+</script>
+
+</body>
+</html>

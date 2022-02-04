@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+
+	<style type="text/css">
+
+#soundGame_playarea {
+	text-align: center;
+	width: 100%;
+	margin: auto;
+}
+
+#title {
+	font-size: 5em;
+}
+
+.btn {
+	width: 80%;
+	height: 80%;
+	background-color: #eee;
+	border-width: 4px;
+	border-style: solid;
+	border-color: white;
+	margin: 20px auto;
+	border-radius: 50px;
+	
+}
+
+#playarea {
+	width: 100%;
+}
+
+.buttonarea {
+	width: 50%;
+	text-align: center;
+	float: left;
+	margin: auto;
+}
+
+.buttonarea img {
+	padding: 35px 0;
+}
+
+.btn_img {
+	width: 80%;
+	display: block;
+	margin: auto;
+	cursor: pointer;
+
+}
+
+#drop_area_1 {
+  width: 45%;
+  height: 200px;
+  padding: 1%;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  margin: 10px auto;
+  display: inline-block;
+  background-color: #eee;
+  margin-right: 20px; 
+}
+
+#drop_area_1 img {
+	padding: 15px 0;
+}
+
+#drop_area_2 {
+  width: 45%;
+  height: 200px;
+  padding: 1%;
+  border: 5px solid #ddd;
+  border-radius: 20px;
+  margin: 10px auto;
+ display: inline-block; 
+ background-color: #eee;
+}
+
+#drop_area_2 img {
+	padding: 15px 0;
+}
+
+#compare_button {
+	font-size: 18px;
+	padding: 20px;
+	background-color: #e5de12;
+	border: none;
+}
+
+#compare_button:hover {
+	background-color: #d5b312;
+	cursor: pointer;
+}
+
+</style>
+</head>
+
+</head>
+<body>
+<div id="soundGame_playarea">
+
+
+<h1 id="title">SOUND MATCHING</h1>
+<div id="playarea">
+<div id="leftArea" class="buttonarea">
+      <div class="btn" ondrop="drop(event)" ondragover="allowDrop(event)" destination="drop_area_1"><img src="resources/button_b.png" id="b1" class="left_btn btn_img" draggable="true" ondragstart="drag(event)" destination="drop_area_1"></div>
+      <div class="btn" ondrop="drop(event)" ondragover="allowDrop(event)" destination="drop_area_1"><img src="resources/button_b.png" id="b2" class="left_btn btn_img" draggable="true" ondragstart="drag(event)" destination="drop_area_1"></div>
+      <div class="btn" ondrop="drop(event)" ondragover="allowDrop(event)" destination="drop_area_1"><img src="resources/button_b.png" id="b3" class="left_btn btn_img" draggable="true" ondragstart="drag(event)" destination="drop_area_1"></div>
+</div>
+<div id="rightArea" class="buttonarea">
+      <div class="btn" ondrop="drop(event)" ondragover="allowDrop(event)" destination="drop_area_2"><img src="resources/button_b.png" id="c1" class="right_btn btn_img" draggable="true" ondragstart="drag(event)" destination="drop_area_2"></div>
+      <div class="btn" ondrop="drop(event)" ondragover="allowDrop(event)" destination="drop_area_2"><img src="resources/button_b.png" id="c2" class="right_btn btn_img" draggable="true" ondragstart="drag(event)" destination="drop_area_2"></div>
+      <div class="btn" ondrop="drop(event)" ondragover="allowDrop(event)" destination="drop_area_2"><img src="resources/button_b.png" id="c3" class="right_btn btn_img" draggable="true" ondragstart="drag(event)" destination="drop_area_2"></div>
+</div>
+</div>
+<div style="clear: both;"></div>
+<div id="drop_area_1" class="left_btn" ondrop="drop(event)" ondragover="allowDrop(event)" destination="drop_area_1"></div>
+<div id="drop_area_2" class="left_btn" ondrop="drop(event)" ondragover="allowDrop(event)" destination="drop_area_2"></div>
+<div style="clear: both;"></div>
+ <button type="button" id="compare_button">Show results!</button>
+ <h2 id="result_header"></h2>
+</div>
+<script>
+
+const og = ['resources/apokliros_cover.mp3', 
+			'resources/kyriaki_cover.mp3',
+			'resources/skalopati_cover.mp3'];
+
+const cover = ['resources/apokliros_og.mp3', 
+			'resources/kyriaki_og.mp3',
+			'resources/skalopati_og.mp3'];
+
+var leftArea = document.getElementById("leftArea");
+var generated_nums = [];
+var filled_buttons_b = [];
+var filled_buttons_c = [];
+
+var selection_1;
+var selection_2;
+var dragged_object;
+var dragged_object_destination;
+var audio = new Audio();
+
+for (var i=1; i<=og.length; i++){ 
+		//select a random number which will be the position in the array
+		//from where we take the sound and make sure we don't duplicate it
+		var random;
+		var random_button;
+		random = selectRandom();
+			while (generated_nums.includes(random)) {
+				random = selectRandom();
+				}
+		
+		generated_nums.push(random);
+		
+		selected_sound = og[og.length - og.length + random];
+		//do the same so we pick a random button on the right side
+		random_button = (selectRandom() + 1);
+			while (filled_buttons_b.includes(random_button)) {
+				random_button = (selectRandom() + 1);
+			}
+		
+		filled_buttons_b.push(random_button);
+		//assign the audio as a value on the element and add a click event listener on that button			
+		b = document.getElementById("b" + random_button);
+		b.setAttribute('audiofile', selected_sound);
+		b.setAttribute('music_key', i);
+		b.addEventListener("click", btnClick);
+		console.log(b);
+		//now we select a random button on the right side
+		random_button = (selectRandom() + 1);
+			while (filled_buttons_c.includes(random_button)) {
+				random_button = (selectRandom() + 1);
+			}
+		
+		filled_buttons_c.push(random_button);
+		//we assign the same position from the array as sound goes but from the second array
+		//and add click event listener on that as well
+		selected_sound = cover[cover.length - cover.length + random];
+		c = document.getElementById("c" + i);
+		c.setAttribute('audiofile', selected_sound);
+		c.setAttribute('music_key', i);
+		c.addEventListener("click", btnClick);
+		console.log(c);
+
+		var button;
+		button = document.getElementById("compare_button")
+		button.addEventListener("click", comparison);
+		
+}
+
+function comparison() {
+	console.log("button pressed");
+	var firstarea;
+	var firstareachild;
+	var firstareachild_key;
+	var secondarea;
+	var secondareachild;
+	var secondareachild_key;
+	firstarea = document.getElementById("drop_area_1");
+	secondarea = document.getElementById("drop_area_2");
+
+	if (firstarea.firstChild && secondarea.firstChild) {
+
+	firstareachild = firstarea.firstChild;
+	firstareachild_key = firstareachild.getAttribute("music_key");
+	console.log("first child attr is " + firstareachild_key);
+	
+	secondareachild = secondarea.firstChild;
+	secondareachild_key = secondareachild.getAttribute("music_key");
+
+	if (firstareachild_key == secondareachild_key) {
+		document.getElementById("result_header").innerHTML = "You got that right!"
+	} else {
+		document.getElementById("result_header").innerHTML = "You got that WRONG!"
+	}
+
+	} else {
+		document.getElementById("result_header").innerHTML = "Select two songs first."
+	}
+
+}
+
+
+
+function selectRandom() {
+	var randomNumber = Math.floor(Math.random() * og.length);
+	return randomNumber;
+}
+
+
+function btnClick(e) {
+	audio.pause();
+	audio.currentTime = 0;
+	audio.src = e.target.getAttribute('audiofile');
+	audio.play();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+  dragged_object = ev.target.getAttribute("music_key");
+  dragged_object_destination = ev.target.getAttribute("destination");
+  console.log(ev.target);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var temp_target_destination = ev.target.getAttribute("destination");
+  console.log(temp_target_destination);
+  console.log(dragged_object_destination);
+
+  if (temp_target_destination == dragged_object_destination && ev.target.childNodes.length < 1) {
+  		ev.target.appendChild(document.getElementById(data));
+  }
+
+  
+  	if (ev.target.getAttribute("id") == "drop_area_1") {
+  		selection_1 = dragged_object;
+  	}
+
+  	if (ev.target.getAttribute("class") == "btn" && dragged_object_destination == "drop_area_1") {
+  		selection_1 = "";
+  	}
+
+  	if (ev.target.getAttribute("id") == "drop_area_2") {
+  		selection_2 = dragged_object;
+  	}
+
+   	if (ev.target.getAttribute("class") == "btn" && dragged_object_destination == "drop_area_2") {
+  		selection_2 = undefined;
+  	}
+
+  	console.log("area1 is " + selection_1);
+  	console.log("area1 is " + selection_2);
+
+
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+
+
+</script>
+
+</body>
+</html>
