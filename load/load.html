@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" type="text/css" href="../css/custom.css" />
+		<!--<script src="scripts/test.js"></script>-->
+		<script src="https://libs.zappar.com/zappar-js/0.3.11/zappar.js"></script>
+	</head>
+
+	<body>
+
+		<img src="assets/intro_bg.png" id="introbg">
+
+		
+		<script>
+			const queryString = window.location.search;
+			var lastoption;
+
+			console.log("yes query");
+			console.log(queryString);
+
+			if (queryString) {
+				const urlParams = new URLSearchParams(queryString);
+
+				try {
+					lastoption = parseInt(urlParams.get("lastoption"));
+
+					//console.log(typeof page_type);
+				} catch (error) {}
+			}
+
+
+
+			document.getElementById("introbg").addEventListener("click", introbg);
+
+function introbg() {
+  window.location.href = "../index.html?lastoption=" + lastoption;
+}
+		</script>
+	</body>
+</html>

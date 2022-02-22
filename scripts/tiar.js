@@ -1,5 +1,5 @@
-3class Tiar {
-	constructor(text, video, arVideo, kanonaki, lyra, startingNumber, tData) {
+class Tiar {
+	constructor(text, video, arVideo, kanonaki, lyra, pandouradiv, sakafliasdiv, BG, startingNumber, tData) {
 		if (
 			typeof text == "string" &&
 			typeof video == "string" &&
@@ -11,9 +11,15 @@
 			this.arVideo = document.getElementById(arVideo);
 			this.kanonaki = document.getElementById(kanonaki);
 			this.lyra = document.getElementById(lyra);
+			this.pandoura = document.getElementById(pandouradiv);
+			this.sakaflias = document.getElementById(sakafliasdiv);
+			this.BG = document.getElementById(BG);
 
+			this.disableBG();
 			this.disableKanonaki();
 			this.disableLyra();
+			this.disableSakaflias();
+			this.disablePandoura();
 
 			this.buttonEnabled = true;
 
@@ -109,96 +115,152 @@
 		}
 		switch (this.startingNumber) {
 			case 0:
-				//clickSound.play();
-				this.setDocText(this.getCorrectTextValue("1.1.1"));
+				this.startingNumber += 1;
+				this.summonANewPage("/load/load.html");
 				break;
 			case 1:
-				this.setDocText(this.getCorrectTextValue("1.1.2"));
+				//clickSound.play();
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("1.1.1"));
 				break;
 			case 2:
-				this.setDocText(this.getCorrectTextValue("2.1"));
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("1.1.2"));
 				break;
 			case 3:
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("2.1"));
+				break;
+			case 4:
+				this.enableBG();
 				//this.startVideoProcedure("2.6");
 				this.startARProcedure("1a", "2.4");
 				break;
-			case 4:
+			case 5:
+				this.enableBG();
 				this.startVideoProcedure("2.6");
 				break;
-			case 5:
+			case 6:
+				this.enableBG();
 				this.savePicture();
 				this.stopVideoProcedure();
 				this.setDocText(this.getCorrectTextValue("2.6"));
 				break;
-			case 6:
-				this.setDocText(this.getCorrectTextValue("3.1"));
-				break;
 			case 7:
-				this.startARProcedure("1c", "3.4");
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("2.7"));
 				break;
 			case 8:
-				this.setDocText(this.getCorrectTextValue("3.5"));
+				this.enableBG();
+				this.disableMainText();
+				this.enablePandoura();
 				break;
 			case 9:
-				this.startingNumber += 1;
-				this.summonANewPage("/matching_game/sound-mobile.html");
-
+				this.enableBG();
+				this.disablePandoura();
+				this.enableMainText();
+				this.setDocText(this.getCorrectTextValue("3.1"));
 				break;
 			case 10:
-				this.setDocText(this.getCorrectTextValue("3.7"));
+				this.enableBG();
+				this.startARProcedure("1c", "3.4");
 				break;
 			case 11:
-				this.setDocText(this.getCorrectTextValue("4.1"));
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("3.5"));
 				break;
 			case 12:
-				this.startARProcedure("1e", "4.4");
+				this.enableBG();
+				this.startingNumber += 1;
+				this.summonANewPage("/matching_game/sound-mobile.html");
 				break;
 			case 13:
-				this.setDocText(this.getCorrectTextValue("4.5"));
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("3.7"));
 				break;
 			case 14:
-				this.startKanonakiProcedure();
-
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("4.1"));
 				break;
 			case 15:
+				this.enableBG();
+				this.startARProcedure("1e", "4.4");
+				break;
+			case 16:
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("4.5"));
+				break;
+			case 17:
+				this.enableBG();
+				this.startKanonakiProcedure();
+				break;
+			case 18:
+				this.enableBG();
 				this.setDocText(this.getCorrectTextValue("4.6"));
 				this.disableKanonaki();
 				this.enableMainText();
 				break;
-			case 16:
+			case 19:
+				this.enableBG();
 				this.startLyraProcedure();
-
 				break;
-			case 17:
+			case 20:
+				this.enableBG();
 				this.setDocText(this.getCorrectTextValue("5.1"));
 				this.disableLyra();
 				this.enableMainText();
 				break;
-			case 18:
+			case 21:
+				this.enableBG();
 				this.setDocText(this.getCorrectTextValue("5.2"));
 				break;
-			case 19:
+			case 22:
+				this.enableBG();
 				this.startARProcedure("2b", "5.5"); //edw prepei na balw quiz
 				break;
-			case 20:
-				this.setDocText(this.getCorrectTextValue("6.1"));
-
-				break;
-			case 21:
-				this.startARProcedure("3a", "6.4");
-
-				break;
-			case 22:
-				this.setDocText(this.getCorrectTextValue("6.5"));
-
-				break;
 			case 23:
-				this.setDocText(this.getCorrectTextValue("7.1"));
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("6.1"));
 				break;
 			case 24:
-				this.startARProcedure("3c", "7.3");
+				this.enableBG();
+				this.startARProcedure("3a", "6.4");
 				break;
 			case 25:
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("6.5"));
+				break;
+			case 26:
+				this.enableBG();
+				this.disableMainText();
+				this.enableSakaflias();
+				break;
+			case 27:
+				this.enableBG();
+				this.enableMainText();
+				this.disableSakaflias();
+				this.setDocText(this.getCorrectTextValue("6.6"));
+				break;
+			case 28:
+				this.enableBG();
+				this.startingNumber += 1;
+				this.summonANewPage("/quizbuilding/quizjavascript.html");
+				break;
+			case 29:
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("7.1"));
+				break;
+			case 30:
+				this.enableBG();
+				this.startARProcedure("3c", "7.3");
+				break;
+			case 31:
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("8.1"));
+				break;
+			case 32:
+				this.enableBG();
+				this.setDocText(this.getCorrectTextValue("8.2"));
 				break;
 		}
 		this.startingNumber += 1;
@@ -278,7 +340,10 @@
 		let aDownload = document.createElement("a");
 		aDownload.href = image_data_url;
 		aDownload.download = "image.jpeg";
-		aDownload.innerText = "Download Image";
+		aDownload.style.height = "100px";
+		aDownload.style.width = "100px";
+		aDownload.style.backgroundImage = "url('assets/download.png')";
+		aDownload.style.display = "inline-block";
 		aDownload.onclick = function () {
 			aDownload.remove();
 		};
@@ -287,24 +352,32 @@
 	}
 
 	async getVideo() {
+		console.log("async getVideo started");
 		if (
 			"mediaDevices" in navigator &&
 			"getUserMedia" in navigator.mediaDevices
 		) {
 			let stream = null;
+		console.log("let stream = null");
 
 			try {
+				console.log("started try");
+console.log("stream = await navigator.mediaDevices");
 				stream = await navigator.mediaDevices
-					.getUserMedia({
+						.getUserMedia({
 						video: {
-							height: 300,
+							height: 300, facingMode: "environment"
 						},
-						audio: false,
+						audio: false
 					})
 					.then(function (mediaStream) {
+						console.log("then(function (mediaStream) started");
+
 						let video = document.querySelector("#video");
 						cameraVideo = document.querySelector("#video");
+						console.log("video.srcObject = stream; ready to start");
 						video.srcObject = mediaStream;
+						console.log("video.srcObject = stream; started");
 						video.onloadedmetadata = function () {
 							var balloon =
 								document.getElementsByClassName("balloon")[0];
@@ -442,4 +515,31 @@
 		this.lyra.style.display = "none";
 		lyra2.pause();
 	}
+
+	enableSakaflias() {
+		this.sakaflias.style.display = "";
+	}
+
+	disableSakaflias() {
+		this.sakaflias.style.display = "none";
+		lyra3.pause();
+	}
+
+	enablePandoura() {
+		this.pandoura.style.display = "";
+	}
+
+	disablePandoura() {
+		this.pandoura.style.display = "none";
+	}
+
+	enableBG() {
+		this.BG.style.display = "block";
+	}
+
+	disableBG() {
+		this.BG.style.display = "none";
+	}
+
+
 }

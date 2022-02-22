@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style type="text/css">
+
+body {
+	
+	text-align: center;
+	background-color: white;
+}
+
+#BG {
+	background-image: url("assets/BG_general_white_mona.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height:  95vh;
+	
+	/*position: fixed;*/
+
+}
+
+#question {
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+	width: 80%;
+	margin-left: 9%;
+	color: #555;
+	padding: 5px 5px;
+				border-radius: 5px;
+				border-style: solid;
+				border-width: 3px;
+				border-color: #eee;
+				background-color: white;
+}
+
+#qcontainer {
+	width: 100%;
+	text-align: center;
+}
+
+.answer {
+	max-width: 28%;
+	padding: 1% 1%;
+	background-color: #ddd;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+	margin-right: 5px;
+	margin-bottom: 20px;
+}
+
+.answer img {
+	max-width: 100%;
+	text-align: center;
+}
+
+#result {
+	font-size: 1.1em;
+	color: #555;
+	padding: 10px 30px;
+	background-color: white;
+}
+
+#next {
+	margin: auto;
+	width: 80px;
+	height: 100px;
+	cursor: pointer;
+}
+
+#next img {
+	width: 80px;
+	height: 100px;
+}
+
+
+</style>
+</head>
+
+<body>
+<div id="BG">
+<h3 id="question">Πατώντας στις εικόνες, μπορείς να μάθεις ενδιαφέρουσες πληροφορίες για τα κτήρια των μουσείων αυτών. Το κάθε κτήριο είναι τόσο μοναδικό!</h3>
+
+<div id="qcontainer">
+<div class="answer" id="karikatur"><img src="assets/karikatur.jpg"></div>
+<div class="answer" id="lucarini"><img src="assets/Lucarini.jpg"></div>
+<div class="answer" id="nemo"><img src="assets/nemo.jpg"></div>
+</div>
+
+<p id="result"> </p>
+
+<div id="next"><img src="assets/mona_nxt_btn.png"></div>
+</div>
+<script>
+answer1 = document.getElementById("karikatur");
+answer1.addEventListener("click", karikaturClick);
+answer2 = document.getElementById("lucarini");
+answer2.addEventListener("click", lucariniClick);
+answer3 = document.getElementById("nemo");
+answer3.addEventListener("click", monaClick);
+
+next = document.getElementById("next");
+next.addEventListener("click", nextBtn);
+
+//url parameters
+			const queryString = window.location.search;
+			var lastoption;
+
+			console.log("yes query");
+			console.log(queryString);
+
+			if (queryString) {
+				const urlParams = new URLSearchParams(queryString);
+
+				try {
+					lastoption = parseInt(urlParams.get("lastoption"));
+
+					//console.log(typeof page_type);
+				} catch (error) {}
+			}
+
+function karikaturClick(x) {
+	x = document.getElementById("question");
+	x.style.display = "none";
+	x = document.getElementById("result");
+		x.innerHTML = "Το μουσείο καρικατούρας Kunstmeile Krems βρίσκεται στην Αυστρία, στην πόλη Krems an der Donau και είναι αφιερωμένο στις καρικατούρες, την πολιτική σάτιρα, τα καρτούν και τα κόμικς. Η οροφή του κτηρίου παραπέμπει στις οροφές των παλιών σπιτιών της περιοχής."
+		}
+	
+function lucariniClick(x) {
+	x = document.getElementById("question");
+	x.style.display = "none";
+		x = document.getElementById("result");
+		x.innerHTML = "Στο Τρέβι της Ιταλίας βρίσκεται το μουσείο μοντέρνας τέχνης Palazzo Lucarini Contemporary. Το κτήριο στο οποίο στεγάζεται είναι χτισμένο τον 15ο αιώνα. Αρχικά ήταν κατοικία της οικογένειας Λουκαρίνι, έπειτα σχολείο για παιδιά, αλλά και ορφανοτροφείο. Ανάλογα με τις ανάγκες της εποχής και τους εκάστοτε ιδιοκτήτες, η χρήση του κτηρίου ήταν διαφορετική."
+		}
+
+function monaClick(x) {
+	x = document.getElementById("question");
+	x.style.display = "none";
+		x = document.getElementById("result");
+		x.innerHTML = "Πολύ ιδιαίτερο σχήμα έχει το μουσείο ΝΕΜΟ που βρίσκεται στο Άμστερνταμ της Ολλανδίας, δε νομίζεις; Χτισμένο πάνω σε ένα υπόγειο τούνελ, το μουσείο μοιάζει να ξεπροβάλει δυναμικά μέσα από το νερό, εντυπωσιάζοντας τον επισκέπτη."
+		}
+	
+//This is the function that the next btn executes
+function nextBtn()
+{
+window.location.href = "../index.html?lastoption=" + lastoption;
+}
+
+
+
+</script>
+
+</body>
+</html>

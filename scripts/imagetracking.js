@@ -60,6 +60,9 @@ fetch("scripts/mainContent.json")
 			"myCanvas",
 			"play-area",
 			"play-area-lyra",
+			"pandouradiv",
+			"sakafliasdiv",
+			"BG",
 			0,
 			tData
 		);
@@ -105,4 +108,15 @@ function audioClick2() {
 	lyra2.pause();
 	lyra2.currentTime = 0;
 	lyra2.play();
+}
+
+let lyra3 = new Audio("assets/resources/sakaflias.mp3");
+let musBtn3 = document.getElementById("sakafliasimg");
+
+musBtn3.addEventListener("click", audioClick3);
+
+function audioClick3() {
+	lyra3.pause();
+	lyra3.currentTime = 0;
+	lyra3.play();
 }
