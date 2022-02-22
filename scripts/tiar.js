@@ -342,9 +342,7 @@ class Tiar {
 		let video = document.querySelector("#video");
 		let myElm = document.createElement("canvas");
 
-		let myElmC = myElm
-			.getContext("2d")
-			.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+		let myElmC = myElm.getContext("2d").drawImage(video, 0, 0, 1920, 1080); //video.clientWidth, video.clientHeight);
 
 		let image_data_url = myElm.toDataURL("image/jpeg");
 		console.log(image_data_url);
