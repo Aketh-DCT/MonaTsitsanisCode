@@ -1,5 +1,16 @@
 class Tiar {
-	constructor(text, video, arVideo, kanonaki, lyra, pandouradiv, sakafliasdiv, BG, startingNumber, tData) {
+	constructor(
+		text,
+		video,
+		arVideo,
+		kanonaki,
+		lyra,
+		pandouradiv,
+		sakafliasdiv,
+		BG,
+		startingNumber,
+		tData
+	) {
 		if (
 			typeof text == "string" &&
 			typeof video == "string" &&
@@ -340,8 +351,8 @@ class Tiar {
 		let aDownload = document.createElement("a");
 		aDownload.href = image_data_url;
 		aDownload.download = "image.jpeg";
-		aDownload.style.height = "100px";
-		aDownload.style.width = "100px";
+		aDownload.style.height = "1920px";
+		aDownload.style.width = "1080px";
 		aDownload.style.backgroundImage = "url('assets/download.png')";
 		aDownload.style.display = "inline-block";
 		aDownload.onclick = function () {
@@ -358,17 +369,18 @@ class Tiar {
 			"getUserMedia" in navigator.mediaDevices
 		) {
 			let stream = null;
-		console.log("let stream = null");
+			console.log("let stream = null");
 
 			try {
 				console.log("started try");
-console.log("stream = await navigator.mediaDevices");
+				console.log("stream = await navigator.mediaDevices");
 				stream = await navigator.mediaDevices
-						.getUserMedia({
+					.getUserMedia({
 						video: {
-							height: 300, facingMode: "environment"
+							height: 300,
+							facingMode: "environment",
 						},
-						audio: false
+						audio: false,
 					})
 					.then(function (mediaStream) {
 						console.log("then(function (mediaStream) started");
@@ -540,6 +552,4 @@ console.log("stream = await navigator.mediaDevices");
 	disableBG() {
 		this.BG.style.display = "none";
 	}
-
-
 }
